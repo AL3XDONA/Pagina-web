@@ -1,0 +1,33 @@
+.Titulo-principal { /* Clase para el título principal en el encabezado */
+    font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.Eslogan { /* Clase para el eslogan debajo del título principal */
+    font-size: 20px; 
+    font-family: 'Open Sans', sans-serif;
+    color: #F9A825;
+    text-align: center;
+}
+body { /* Estilos generales para el cuerpo del documento */
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFF8E1;
+    color: #212121;
+}
+header { /* Estilos para el encabezado del sitio */
+    background-color: #C62828;
+    padding: 20px;
+}
+h2 { /* Estilos para los títulos de segundo nivel en el contenido */
+    font-family: 'Poppins', sans-serif;
+    color: #2E7D32;  
+    text-align: left;
+}
+img { /* Estilos para las imágenes en el contenido */
+    display: block;
+    margin: 20px auto;
+    border-radius: 20px;
+    width: 60%;
+}
