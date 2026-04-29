@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Huaraches Los Osos</title>
+    <header>
+        <div align="center">
+            <h1 class="Titulo-principal">Huaraches los Osos</h1>
+            <h2 class="Eslogan">El autentico sabor mexicano</h2>
+        </div>
+    </header>
+    <style>
+        body {
+            background-color: #FFF5EC;
+            margin: 0;
+        }
+        header{
+            background-color: #5C2D0A;
+            padding: 20px;
+            display: block;
+            unicode-bidi: isolate;
+        }
+        .Titulo-principal {
+            font-size: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        .Eslogan {
+            font-size: 20px;
+            font-family: 'Open Sans', sans-serif;
+            color: #F9A825;
+            text-align: center;
+        }
+        p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+        }
+        button {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            background-color: #E07B39;
+            border: none;
+            padding: 20px;
+        }
+        ul, ol {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 18px;
+        }
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #E07B39;
+        }
+        .menu li {
+            float: left;
+        }
+        .menu li a {
+            display: block;
+            color: #FFF5EC;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover:not(.active) {
+            background-color: #A0480F;
+        }
+        .active {
+            background-color: #5C2D0A;
+            color: #FDEBD0 !important;
+        }
+
+        /* Hero */
+        .hero {
+            background-color: #FFF5EC;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .hero h2 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 36px;
+            color: #5C2D0A;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #A0480F;
+            margin-bottom: 30px;
+        }
+        .btn-hero {
+            background-color: #E07B39;
+            color: #FFF5EC;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .btn-hero:hover {
+            background-color: #F2C57C;
+            color: #5C2D0A;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div>
+        <ul class="menu">
+            <li><a class="active" href="Inicio.html">Inicio</a></li>
+            <li><a href="Somos.html">Somos</a></li>
+            <li><a href="Formulario.html">Servicio</a></li>
+            <li><a href="Pedido.html">Pedido</a></li>
+        </ul>
+    </div>
+
+    <div class="hero">
+        <h2>Bienvenido a Huaraches Los Osos</h2>
+        <p>El auténtico sabor mexicano hecho con amor y tradición</p>
+        <a href="Formulario.html" class="btn-hero">¡Haz tu pedido ahora!</a>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inicio - Huaraches Los Osos</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #FFF5EC;
+}
+
+/* HEADER */
+.header {
+    background-color: #5C2D0A;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header p {
+    color: #F9A825;
+}
+
+/* CONTENEDOR */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* TARJETAS */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+/* EFECTO HOVER */
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* TEXTO SOBRE IMAGEN */
+.card-text {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    width: 100%;
+    padding: 15px;
+}
+
+.card-text h3 {
+    margin: 0;
+}
+
+.card-text p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+.lightbox img {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Galería</h1>
+    <p>Conoce lo que hace únicos a nuestros huaraches 🐻🌮</p>
+</div>
+
+<div class="container">
+
+<div class="grid">
+
+    <!-- IMAGEN 1 -->
+    <div class="card">
+        <img src="../Img/Osos.png" onclick="abrirImagen(this.src)">
+        <div class="card-text">
+            <h3>Tradición en cada preparación</h3>
+            <p>Preparamos cada huarache al momento con ingredientes frescos y mucho sabor.</p>
+        </div>
+    </div>
+
+    <!-- IMAGEN 2 -->
+    <div class="card">
+        <img src="../Img/Negocio1.png" onclick="abrirImagen(this.src)">
+        <div class="card-text">
+            <h3>Ambiente familiar</h3>
+            <p>Un lugar donde puedes disfrutar con tu familia y amigos.</p>
+        </div>
+    </div>
+
+    <!-- IMAGEN 3 -->
+    <div class="card">
+        <img src="../Img/Comida1.png" onclick="abrirImagen(this.src)">
+        <div class="card-text">
+            <h3>Sabor que conquista</h3>
+            <p>Huaraches llenos de sabor que te harán volver por más.</p>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <span class="cerrar" onclick="cerrarImagen()">&times;</span>
+    <img id="imgGrande">
+</div>
+
+<script>
+function abrirImagen(src) {
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("imgGrande").src = src;
+}
+
+function cerrarImagen() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+// Cerrar al hacer click fuera de la imagen
+document.getElementById("lightbox").addEventListener("click", function(e) {
+    if (e.target === this) {
+        cerrarImagen();
+    }
+});
+</script>
+
+</body>
+</html>

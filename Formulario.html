@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pedido - Huaraches</title>
+
+<style>
+body {
+    font-family: Arial;
+    background-color: #f4ede6;
+    text-align: center;
+}
+
+.container {
+    margin: 40px auto;
+    width: 420px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    margin: 6px;
+    padding: 10px 15px;
+    background: #d97a3a;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b85f2a;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+#ticket {
+    text-align: left;
+    margin-top: 15px;
+    background: #fff8f2;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.submensaje {
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Arma tu huarache</h2>
+
+<!-- INGREDIENTES -->
+<div id="ingredientesBox">
+
+<p class="submensaje">
+El costo se basa en el ingrediente de mayor precio; cada adicional incrementa $25.
+</p>
+
+<label><input type="checkbox" value="45" data-nombre="Bistec"> Bistec ($45)</label>
+<label><input type="checkbox" value="45" data-nombre="Salchicha"> Salchicha ($45)</label>
+<label><input type="checkbox" value="45" data-nombre="Queso"> Queso ($45)</label>
+<label><input type="checkbox" value="45" data-nombre="Huevo"> Huevo ($45)</label>
+<label><input type="checkbox" value="45" data-nombre="Longaniza"> Longaniza ($45)</label>
+
+<label><input type="checkbox" value="80" data-nombre="Cecina natural"> Cecina natural ($80)</label>
+<label><input type="checkbox" value="80" data-nombre="Cecina adobada"> Cecina adobada ($80)</label>
+<label><input type="checkbox" value="80" data-nombre="Arrachera"> Arrachera ($80)</label>
+<label><input type="checkbox" value="80" data-nombre="Costilla"> Costilla ($80)</label>
+
+<button onclick="validarIngredientes()">Continuar</button>
+
+</div>
+
+<!-- SALSA -->
+<div id="salsaBox" class="hidden">
+<h3>Elige tu salsa</h3>
+<button onclick="seleccionarSalsa('Verde')">Verde</button>
+<button onclick="seleccionarSalsa('Roja')">Roja</button>
+<button onclick="seleccionarSalsa('Mixta')">De las dos</button>
+<button onclick="seleccionarSalsa('Sin salsa')">Sin salsa</button>
+</div>
+
+<!-- QUESO -->
+<div id="quesoBox" class="hidden">
+<h3>¿Queso rayado?</h3>
+<button onclick="seleccionarQueso('Sí')">Sí</button>
+<button onclick="seleccionarQueso('No')">No</button>
+</div>
+
+<!-- BEBIDA -->
+<div id="bebidaBox" class="hidden">
+<h3>¿Algo para tomar?</h3>
+<button onclick="seleccionarBebida('Agua de guayaba', 30)">Agua de guayaba (1L - $30)</button>
+<button onclick="seleccionarBebida('Agua de Jamaica', 30)">Agua de Jamaica (1L - $30)</button>
+<button onclick="seleccionarBebida('Sin bebida', 0)">No</button>
+</div>
+
+<!-- RESULTADO -->
+<div id="resultado" class="hidden">
+<h2>🧾 Tu pedido</h2>
+<div id="ticket"></div>
+</div>
+
+</div>
+
+<script>
+
+let pedido = {
+    ingredientes: [],
+    total: 0,
+    salsa: "",
+    queso: "",
+    bebida: ""
+};
+
+function validarIngredientes() {
+    let checks = document.querySelectorAll('#ingredientesBox input:checked');
+
+    if (checks.length === 0) {
+        alert("Selecciona al menos un ingrediente");
+        return;
+    }
+
+    if (checks.length > 9) {
+        alert("Máximo 9 ingredientes");
+        return;
+    }
+
+    let precios = [];
+
+    checks.forEach(el => {
+        pedido.ingredientes.push(el.dataset.nombre);
+        precios.push(parseInt(el.value));
+    });
+
+    let base = Math.max(...precios);
+    let extras = precios.length - 1;
+    pedido.total = base + (extras * 25);
+
+    document.getElementById("ingredientesBox").classList.add("hidden");
+    document.getElementById("salsaBox").classList.remove("hidden");
+}
+
+function seleccionarSalsa(opcion) {
+    pedido.salsa = opcion;
+    document.getElementById("salsaBox").classList.add("hidden");
+    document.getElementById("quesoBox").classList.remove("hidden");
+}
+
+function seleccionarQueso(opcion) {
+    pedido.queso = opcion;
+    document.getElementById("quesoBox").classList.add("hidden");
+    document.getElementById("bebidaBox").classList.remove("hidden");
+}
+
+function seleccionarBebida(nombre, precio) {
+    pedido.bebida = nombre;
+
+    if (precio > 0) {
+        pedido.total += precio;
+    }
+
+    mostrarResumen();
+}
+
+function mostrarResumen() {
+
+    document.getElementById("bebidaBox").classList.add("hidden");
+    document.getElementById("resultado").classList.remove("hidden");
+
+    let bebidaTexto = pedido.bebida === "Sin bebida" 
+        ? "No incluye" 
+        : pedido.bebida + " (1L)";
+
+    let ticket =
+    "<strong>Ingredientes:</strong><br>" +
+        pedido.ingredientes.join(", ") + "<br><br>" +
+    "<strong>Salsa:</strong> " + pedido.salsa + "<br>" +
+    "<strong>Queso rayado:</strong> " + pedido.queso + "<br>" +
+    "<strong>Bebida:</strong> " + bebidaTexto + "<br><br>" +
+    "<strong>Total:</strong> $" + pedido.total;
+
+    document.getElementById("ticket").innerHTML = ticket;
+}
+
+</script>
+
+</body>
+</html>
