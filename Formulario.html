@@ -5,57 +5,87 @@
 <title>Pedido - Huaraches</title>
 
 <style>
-body {
+
+body{
     font-family: Arial;
     background-color: #f4ede6;
     text-align: center;
+    margin: 0;
 }
 
-.container {
+/* CONTENEDOR */
+.container{
     margin: 40px auto;
-    width: 420px;
+    width: 500px;
     background: white;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 30px;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.hidden {
-    display: none;
+/* TITULOS */
+h2{
+    color: #5C2D0A;
+    margin-bottom: 10px;
 }
 
-button {
-    margin: 6px;
-    padding: 10px 15px;
-    background: #d97a3a;
+h3{
+    color: #A0480F;
+    margin-top: 25px;
+}
+
+/* LABELS */
+label{
+    display: block;
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+/* MENSAJE */
+.submensaje{
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* SELECT */
+select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* BOTONES */
+button{
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #E07B39;
     border: none;
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-button:hover {
-    background: #b85f2a;
+button:hover{
+    background: #A0480F;
 }
 
-label {
-    display: block;
-    margin: 5px 0;
-}
-
-#ticket {
+/* RESULTADO */
+#ticket{
     text-align: left;
-    margin-top: 15px;
+    margin-top: 25px;
     background: #fff8f2;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
+    border: 1px solid #f0d7c6;
 }
 
-.submensaje {
-    font-size: 13px;
-    margin-bottom: 15px;
-    color: #555;
-}
 </style>
 </head>
 
@@ -63,14 +93,14 @@ label {
 
 <div class="container">
 
-<h2>Arma tu huarache</h2>
-
-<!-- INGREDIENTES -->
-<div id="ingredientesBox">
+<h2>Arma tu huarache 🌮</h2>
 
 <p class="submensaje">
 El costo se basa en el ingrediente de mayor precio; cada adicional incrementa $25.
 </p>
+
+<!-- INGREDIENTES -->
+<h3>Ingredientes</h3>
 
 <label><input type="checkbox" value="45" data-nombre="Bistec"> Bistec ($45)</label>
 <label><input type="checkbox" value="45" data-nombre="Salchicha"> Salchicha ($45)</label>
@@ -83,118 +113,108 @@ El costo se basa en el ingrediente de mayor precio; cada adicional incrementa $2
 <label><input type="checkbox" value="80" data-nombre="Arrachera"> Arrachera ($80)</label>
 <label><input type="checkbox" value="80" data-nombre="Costilla"> Costilla ($80)</label>
 
-<button onclick="validarIngredientes()">Continuar</button>
-
-</div>
-
 <!-- SALSA -->
-<div id="salsaBox" class="hidden">
 <h3>Elige tu salsa</h3>
-<button onclick="seleccionarSalsa('Verde')">Verde</button>
-<button onclick="seleccionarSalsa('Roja')">Roja</button>
-<button onclick="seleccionarSalsa('Mixta')">De las dos</button>
-<button onclick="seleccionarSalsa('Sin salsa')">Sin salsa</button>
-</div>
+
+<select id="salsa">
+    <option value="">Selecciona una salsa</option>
+    <option value="Verde">Salsa verde</option>
+    <option value="Roja">Salsa roja</option>
+    <option value="Mixta">De las dos</option>
+    <option value="Sin salsa">Sin salsa</option>
+</select>
 
 <!-- QUESO -->
-<div id="quesoBox" class="hidden">
 <h3>¿Queso rayado?</h3>
-<button onclick="seleccionarQueso('Sí')">Sí</button>
-<button onclick="seleccionarQueso('No')">No</button>
-</div>
 
-<!-- BEBIDA -->
-<div id="bebidaBox" class="hidden">
-<h3>¿Algo para tomar?</h3>
-<button onclick="seleccionarBebida('Agua de guayaba', 30)">Agua de guayaba (1L - $30)</button>
-<button onclick="seleccionarBebida('Agua de Jamaica', 30)">Agua de Jamaica (1L - $30)</button>
-<button onclick="seleccionarBebida('Sin bebida', 0)">No</button>
-</div>
+<select id="queso">
+    <option value="">Selecciona una opción</option>
+    <option value="Sí">Sí</option>
+    <option value="No">No</option>
+</select>
+
+<!-- BEBIDAS -->
+<h3>Bebida</h3>
+
+<select id="bebida">
+    <option value="">Selecciona una bebida</option>
+    <option value="Agua de guayaba">Agua de guayaba (1L - $30)</option>
+    <option value="Agua de Jamaica">Agua de Jamaica (1L - $30)</option>
+    <option value="Sin bebida">Sin bebida</option>
+</select>
+
+<!-- BOTON -->
+<button onclick="finalizarPedido()">Finalizar pedido</button>
 
 <!-- RESULTADO -->
-<div id="resultado" class="hidden">
-<h2>🧾 Tu pedido</h2>
 <div id="ticket"></div>
-</div>
 
 </div>
 
 <script>
 
-let pedido = {
-    ingredientes: [],
-    total: 0,
-    salsa: "",
-    queso: "",
-    bebida: ""
-};
+function finalizarPedido(){
 
-function validarIngredientes() {
-    let checks = document.querySelectorAll('#ingredientesBox input:checked');
+    let checks = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    if (checks.length === 0) {
+    if(checks.length === 0){
         alert("Selecciona al menos un ingrediente");
         return;
     }
 
-    if (checks.length > 9) {
+    if(checks.length > 9){
         alert("Máximo 9 ingredientes");
         return;
     }
 
+    let ingredientes = [];
     let precios = [];
 
     checks.forEach(el => {
-        pedido.ingredientes.push(el.dataset.nombre);
+        ingredientes.push(el.dataset.nombre);
         precios.push(parseInt(el.value));
     });
 
-    let base = Math.max(...precios);
-    let extras = precios.length - 1;
-    pedido.total = base + (extras * 25);
+    let salsa = document.getElementById("salsa").value;
+    let queso = document.getElementById("queso").value;
+    let bebida = document.getElementById("bebida").value;
 
-    document.getElementById("ingredientesBox").classList.add("hidden");
-    document.getElementById("salsaBox").classList.remove("hidden");
-}
-
-function seleccionarSalsa(opcion) {
-    pedido.salsa = opcion;
-    document.getElementById("salsaBox").classList.add("hidden");
-    document.getElementById("quesoBox").classList.remove("hidden");
-}
-
-function seleccionarQueso(opcion) {
-    pedido.queso = opcion;
-    document.getElementById("quesoBox").classList.add("hidden");
-    document.getElementById("bebidaBox").classList.remove("hidden");
-}
-
-function seleccionarBebida(nombre, precio) {
-    pedido.bebida = nombre;
-
-    if (precio > 0) {
-        pedido.total += precio;
+    if(salsa === "" || queso === "" || bebida === ""){
+        alert("Completa todos los apartados");
+        return;
     }
 
-    mostrarResumen();
-}
+    /* CALCULO TOTAL */
+    let base = Math.max(...precios);
+    let extras = precios.length - 1;
+    let total = base + (extras * 25);
 
-function mostrarResumen() {
+    if(
+        bebida === "Agua de guayaba" ||
+        bebida === "Agua de Jamaica"
+    ){
+        total += 30;
+    }
 
-    document.getElementById("bebidaBox").classList.add("hidden");
-    document.getElementById("resultado").classList.remove("hidden");
+    let bebidaTexto =
+        bebida === "Sin bebida"
+        ? "No incluye"
+        : bebida + " (1L)";
 
-    let bebidaTexto = pedido.bebida === "Sin bebida" 
-        ? "No incluye" 
-        : pedido.bebida + " (1L)";
-
+    /* MOSTRAR TICKET */
     let ticket =
+    "<h2>🧾 Tu pedido</h2>" +
+
     "<strong>Ingredientes:</strong><br>" +
-        pedido.ingredientes.join(", ") + "<br><br>" +
-    "<strong>Salsa:</strong> " + pedido.salsa + "<br>" +
-    "<strong>Queso rayado:</strong> " + pedido.queso + "<br>" +
-    "<strong>Bebida:</strong> " + bebidaTexto + "<br><br>" +
-    "<strong>Total:</strong> $" + pedido.total;
+    ingredientes.join(", ") +
+
+    "<br><br><strong>Salsa:</strong> " + salsa +
+
+    "<br><strong>Queso rayado:</strong> " + queso +
+
+    "<br><strong>Bebida:</strong> " + bebidaTexto +
+
+    "<br><br><strong>Total:</strong> $" + total;
 
     document.getElementById("ticket").innerHTML = ticket;
 }
