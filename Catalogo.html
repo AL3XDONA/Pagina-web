@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Catálogo - Huaraches Los Osos</title>
+
+<style>
+
+body{
+    margin:0;
+    background-color:#FFF5EC;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* ENCABEZADO */
+header{
+    background-color:#5C2D0A;
+    padding:20px;
+    text-align:center;
+}
+
+.Titulo-principal{
+    font-size:40px;
+    font-weight:bold;
+    color:white;
+    margin:0;
+}
+
+.Eslogan{
+    font-size:20px;
+    color:#F9A825;
+}
+
+/* MENÚ */
+.menu{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color:#E07B39;
+}
+
+.menu li{
+    float:left;
+}
+
+.menu li a{
+    display:block;
+    color:#FFF5EC;
+    padding:14px 16px;
+    text-decoration:none;
+}
+
+.menu li a:hover:not(.active){
+    background-color:#A0480F;
+}
+
+.active{
+    background-color:#5C2D0A;
+}
+
+/* TITULO */
+.titulo{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.titulo h2{
+    color:#5C2D0A;
+    font-size:35px;
+}
+
+.titulo p{
+    color:#A0480F;
+    font-size:18px;
+}
+
+/* CATÁLOGO */
+.catalogo{
+    width:90%;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+    padding-bottom:50px;
+}
+
+/* TARJETAS */
+.card{
+    width:280px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.info{
+    padding:20px;
+    text-align:center;
+}
+
+.info h3{
+    color:#5C2D0A;
+    margin-bottom:10px;
+}
+
+.info p{
+    color:#555;
+    min-height:60px;
+}
+
+.precio{
+    color:#A0480F;
+    font-size:28px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.btn{
+    display:inline-block;
+    background:#E07B39;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#A0480F;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1 class="Titulo-principal">Huaraches Los Osos</h1>
+    <h2 class="Eslogan">El auténtico sabor mexicano</h2>
+</header>
+
+<ul class="menu">
+    <li><a href="Inicio.html">Inicio</a></li>
+    <li><a href="Somos.html">Somos</a></li>
+    <li><a class="active" href="Catalogo.html">Catálogo</a></li>
+    <li><a href="Formulario.html">Servicio</a></li>
+    <li><a href="http://localhost/BD/Index.php">Contacto</a></li>
+</ul>
+
+<div class="titulo">
+    <h2>Nuestro Catálogo</h2>
+    <p>Conoce nuestras especialidades y personaliza tu huarache favorito.</p>
+</div>
+
+<div class="catalogo">
+
+    <!-- BISTEC -->
+    <div class="card">
+        <img src="../Img/bistec.webp">
+        <div class="info">
+            <h3>Huarache de Bistec</h3>
+            <p>Preparado con bistec fresco y el auténtico sabor mexicano.</p>
+            <div class="precio">$45</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- SALCHICHA -->
+    <div class="card">
+        <img src="../Img/salchicha.webp">
+        <div class="info">
+            <h3>Huarache de Salchicha</h3>
+            <p>Una opción deliciosa y tradicional preparada al momento.</p>
+            <div class="precio">$45</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- QUESO -->
+    <div class="card">
+        <img src="../Img/queso.webp">
+        <div class="info">
+            <h3>Huarache de Queso</h3>
+            <p>Ideal para quienes disfrutan de sabores suaves y cremosos.</p>
+            <div class="precio">$45</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- HUEVO -->
+    <div class="card">
+        <img src="../Img/huevo.webp">
+        <div class="info">
+            <h3>Huarache de Huevo</h3>
+            <p>Preparado con huevo fresco y acompañado de salsa al gusto.</p>
+            <div class="precio">$45</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- LONGANIZA -->
+    <div class="card">
+        <img src="../Img/chorizo.webp">
+        <div class="info">
+            <h3>Huarache de Longaniza</h3>
+            <p>Longaniza tradicional con el auténtico sabor casero.</p>
+            <div class="precio">$45</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- CECINA NATURAL -->
+    <div class="card">
+        <img src="../Img/cecina natural.webp">
+        <div class="info">
+            <h3>Cecina Natural</h3>
+            <p>Cecina preparada con ingredientes seleccionados y frescos.</p>
+            <div class="precio">$80</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- CECINA ADOBADA -->
+    <div class="card">
+        <img src="../Img/cecina adobada.webp">
+        <div class="info">
+            <h3>Cecina Adobada</h3>
+            <p>Marinada con especias tradicionales para un sabor único.</p>
+            <div class="precio">$80</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- ARRACHERA -->
+    <div class="card">
+        <img src="../Img/arrachera.webp">
+        <div class="info">
+            <h3>Arrachera</h3>
+            <p>Carne jugosa preparada al momento para los amantes del buen sabor.</p>
+            <div class="precio">$80</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+    <!-- COSTILLA -->
+    <div class="card">
+        <img src="../Img/costilla.webp">
+        <div class="info">
+            <h3>Costilla</h3>
+            <p>Costilla suave y llena de sabor acompañada de ingredientes frescos.</p>
+            <div class="precio">$80</div>
+            <a href="Formulario.html" class="btn">Pedir ahora</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
